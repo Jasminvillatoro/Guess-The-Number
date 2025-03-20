@@ -1,28 +1,20 @@
 import random #imports random module
 
-# Project Guess The Number 
-# program will have functions 
-# first to display title and program specifications
-# second - plays the game
-# third main function calls those functions and controls the game
-
+# Welcomes the user and gives information about the game
 def display_title():
-	print('Welcome to guess a number')
-	play = input('Would you like to play?   Enter YES OR NO. ')
-	print(play)
 
-	return play
+	print('Welcome to Guess The Number Game')
+	print('Guess a number from 1 - 10')
 
-def play_game():
-
+# logic of the game. Let the user know if guess is too high, too low, or correct
+def play_game(status):
+	 
 	random_number = random.randint(1, 10)
-	print(random_number)
 	users_guess= 0
 	 
 	while users_guess != random_number:
 
 		users_guess = int(input('Enter a number from 1 - 10. '))
-		print('users guess is', users_guess)
 
 		if users_guess > random_number:
 			print('Too high')
@@ -30,15 +22,19 @@ def play_game():
 		elif users_guess < random_number:
 			print('Too low')
 
-	print('You guessed it!')
-	main()
- 
+	print('You Guessed It!')
+	status = 'no'
+	return  status
 
+# Main function for the user to play or exit game
 def main():
-	play = display_title()
-	while play == 'yes':
-		play_game()
-	return print('Have a good day')
 
+	display_title()
+	play = input('Would you like to play?   Enter YES OR NO. ')
+
+	while play.lower() == 'yes':
+		return play_game(play)
+
+	return print('Exiting Game.. Have a good day')
 
 main()
